@@ -1,15 +1,6 @@
 <?php
-$sName = "localhost";
-$uName = "root";
-$pass = "";
-$dbname = "satisfactionsurvey";
-
-try {
-    $conn = new PDO("mysql:host=$sName;dbname=$dbname", $uName, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+// Include the database configuration file
+include('config.php');
 
 function getTotalResponses($conn) {
     try {

@@ -1,17 +1,9 @@
 <?php
-$sName = "localhost";
-$uName = "root";
-$pass = "";
-$dbname = "satisfactionsurvey";
+// Include the database configuration file
+include('config.php'); 
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
-try {
-    $conn = new PDO("mysql:host=$sName;dbname=$dbname", $uName, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $respondent_name = $_POST['respondent_name'];
