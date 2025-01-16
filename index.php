@@ -3,71 +3,71 @@
 include('config.php');
 
 function getTotalResponses($conn) {
-    try {
-        $stmt = $conn->prepare("SELECT COUNT(*) AS total_responses FROM surveyresponse");
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total_responses'];
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    return 0;
+  try {
+      $stmt = $conn->prepare("SELECT COUNT(*) AS total_responses FROM surveyresponse");
+      $stmt->execute();
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+      return $result['total_responses'];
+  } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+  }
+  return 0;
 }
 
 function getSurveyResponses($conn) {
-    try {
-        $stmt = $conn->prepare("
-            SELECT 
-                r.respondent_name, r.respondent_department, r.respondent_designation, 
-                sr.*, s.survey_date
-            FROM 
-                surveyresponse sr
-            JOIN 
-                survey s ON sr.survey_id = s.survey_id
-            JOIN 
-                respondent r ON s.respondent_id = r.respondent_id
-        ");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    return [];
+  try {
+      $stmt = $conn->prepare("
+          SELECT 
+              r.respondent_name, r.respondent_department, r.respondent_designation, 
+              sr.*, s.survey_date
+          FROM 
+              surveyresponse sr
+          JOIN 
+              survey s ON sr.survey_id = s.survey_id
+          JOIN 
+              respondent r ON s.respondent_id = r.respondent_id
+      ");
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+  }
+  return [];
 }
 
 function getAverageScores($conn) {
-    try {
-        $stmt = $conn->prepare("
-            SELECT 
-                AVG(q1_company_satisfaction) AS avg_q1, 
-                AVG(q2_rec_company) AS avg_q2, 
-                AVG(q6_department_satisfaction) AS avg_q6,
-                AVG(q10_basicsalary) AS avgq10_basicsalary,
-                AVG(q10_benefit) AS avgq10_benefit,
-                AVG(q10_career_progression) AS avgq10_career_progression,
-                AVG(q10_med_insurance) AS avgq10_med_insurance,
-                AVG(q10_annual_raise) AS avgq10_annual_raise,
-                AVG(q10_promotion_process) AS avgq10_promotion_process,
-                AVG(q11_superior_job) AS avgq11_superior_job,
-                AVG(q11_superior_listens) AS avgq11_superior_listens,
-                AVG(q11_management) AS avgq11_management,
-                AVG(q11_superior_enable) AS avgq11_superior_enable,
-                AVG(q11_superior_expectation) AS avgq11_superior_expectation,
-                AVG(q11_superior_suggestion) AS avgq11_superior_suggestion,
-                AVG(q11_address_concern) AS avgq11_address_concern,
-                AVG(q11_evaluate_works) AS avgq11_evaluate_works,
-                AVG(q11_jobscope) AS avgq11_jobscope,
-                AVG(q11_management_invest) AS avgq11_management_invest
+  try {
+      $stmt = $conn->prepare("
+          SELECT 
+              AVG(q1_company_satisfaction) AS avg_q1, 
+              AVG(q2_rec_company) AS avg_q2, 
+              AVG(q6_department_satisfaction) AS avg_q6,
+              AVG(q10_basicsalary) AS avgq10_basicsalary,
+              AVG(q10_benefit) AS avgq10_benefit,
+              AVG(q10_career_progression) AS avgq10_career_progression,
+              AVG(q10_med_insurance) AS avgq10_med_insurance,
+              AVG(q10_annual_raise) AS avgq10_annual_raise,
+              AVG(q10_promotion_process) AS avgq10_promotion_process,
+              AVG(q11_superior_job) AS avgq11_superior_job,
+              AVG(q11_superior_listens) AS avgq11_superior_listens,
+              AVG(q11_management) AS avgq11_management,
+              AVG(q11_superior_enable) AS avgq11_superior_enable,
+              AVG(q11_superior_expectation) AS avgq11_superior_expectation,
+              AVG(q11_superior_suggestion) AS avgq11_superior_suggestion,
+              AVG(q11_address_concern) AS avgq11_address_concern,
+              AVG(q11_evaluate_works) AS avgq11_evaluate_works,
+              AVG(q11_jobscope) AS avgq11_jobscope,
+              AVG(q11_management_invest) AS avgq11_management_invest
 
-            FROM 
-                surveyresponse
-        ");
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    return [];
+          FROM 
+              surveyresponse
+      ");
+      $stmt->execute();
+      return $stmt->fetch(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+      echo "Error: " . $e->getMessage();
+  }
+  return [];
 }
 
 $averageScores = getAverageScores($conn);

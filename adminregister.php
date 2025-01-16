@@ -166,6 +166,7 @@ if(isset($_POST["submit"])){
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <span class="title">Sign Up as Admin</span>

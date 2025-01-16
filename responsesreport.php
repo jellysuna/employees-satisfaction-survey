@@ -64,10 +64,6 @@ $responses = getSurveyResponses($conn);
       box-sizing: border-box;
       font-family: 'Lato', sans-serif;
     }
-    /* Hide the 000webhost branding */
-a[href*="000webhost.com"] {
-    display: none;
-}
 
     body {
       font-family: 'Lato', sans-serif;
@@ -122,31 +118,26 @@ a[href*="000webhost.com"] {
     }
 
     .form {
-        padding: auto;
-        background: white;
-        margin: auto;
-        width: 92%;
-        height: auto;
-        padding: 10px 5px 10px 0px;
-        margin-bottom: 60px;
-        border: 0.08px #808080;
-        overflow-x: auto;
+      padding: auto;
+      background: white;
+      margin: auto;
+      width: 92%;
+      height: auto;
+      padding: 10px 5px 10px 0px;
+      margin-bottom: 60px;
+      border: 0.08px #808080;
+      overflow-x: auto;
       overflow-y: auto;
     }
 
-
-
     .form table {
       border-collapse: collapse;
-    margin: auto;
+      margin: auto;
       background: #fff;
       width: 90%;
       height: auto;
       border: 0.08px #808080;
-
-
     }
-
 
     .form table, .form th, .form td {
       border: 1px solid #ccc;
@@ -197,7 +188,7 @@ a[href*="000webhost.com"] {
         padding-left: 40px;
       }
 
-        .headercontainer p {
+      .headercontainer p {
         font-size: 16px;
         padding-bottom: 0px;
         padding-top: 10px;
@@ -209,7 +200,7 @@ a[href*="000webhost.com"] {
       font-weight: 300;
       padding-bottom: 70px;
       padding-left: 40px;
-    }
+      }
 
       .detailscontainer {
         padding: 40px 30px;
@@ -227,8 +218,8 @@ a[href*="000webhost.com"] {
         width: 94%;
       }
       .form table {
-    padding: auto; /* Adjust padding for smaller screens */
-  }
+        padding: auto; /* Adjust padding for smaller screens */
+      }
 
       .form input {
         width: 100%;
@@ -244,9 +235,9 @@ a[href*="000webhost.com"] {
         flex: 1 0 5%;
       }
       
-.logo img {
-  max-height: 18px;
-}
+      .logo img {
+        max-height: 18px;
+      }
     }
 
     @media (max-width: 380px) {
@@ -287,9 +278,9 @@ a[href*="000webhost.com"] {
         flex: 1 0 5%;
       }
       
-.logo img {
-  max-height: 28px;
-}
+      .logo img {
+        max-height: 28px;
+      }
     }
 
     .space {
@@ -300,212 +291,211 @@ a[href*="000webhost.com"] {
       margin-top: 30
     }
 
-.rate {
-  display: flex;
-  justify-content: left;
-  gap: 25px;
-  padding: 20px 25px;
-}
-
-.rate input[type="radio"] {
-  display: none;
-}
-
-.rate label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.rate label div {
-  width: 30px;
-  height: 30px;
-  border: 2px solid #ccc;
-  border-radius: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 5px;
-  transition: background 0.3s, border 0.3s;
-}
-
-.rate input[type="radio"]:checked+label div {
-  background: #808080;
-  border: 2px solid #808080;
-}
-
-.form .btn{
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  border: none;
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  border-radius: 6px;
-  background-color: #0F75BD;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.form .btn:hover {
-  background-color: #fff;
-  color: #0F75BD;
-  border: 2px solid #0F75BD;
-}
-
-.red-text {
-  color: red;
-}
-
-.verticalrate {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  gap: 10px;
-  padding: 10px 25px;
-}
-
-.verticalrate input[type="radio"] {
-  display: none;
-}
-
-.verticalrate label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.verticalrate label div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ccc;
-  border-radius: 13px;
-  transition: background 0.3s, border 0.3s;
-}
-
-.verticalrate label p {
-  font-size: 16px;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.verticalrate input[type="radio"]:checked+label div {
-  background: #808080;
-  border: 2px solid #808080;
-}
-
-.reason {
-  padding-left: 25px;
-  padding-top: 10px;
-}
-
-nav {
-  padding: 40px 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo a {
-  font-size: 28px;
-  text-decoration: none;
-  font-family: cookie;
-  font-weight: bold;
-  color: #433e58;
-  padding-left: 20px;
-}
-
-.logo img {
-  max-height: 58px;
-}
-
-nav ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #433e58;
-  transition: 0.5s;
-  padding-right: 20px;
-}
-
-nav ul li a:hover {
-  color: #92278F;
-}
-
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #433e58;
-  margin: 4px;
-  transition: 0.4s;
-}
-
-@media (max-width: 768px) {
-    nav {
-  padding: 20px 20px 20px 20px;
+    .rate {
+      display: flex;
+      justify-content: left;
+      gap: 25px;
+      padding: 20px 25px;
     }
-  nav ul {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: white;
-    text-align: center;
-  }
 
-  nav ul li {
-    margin: 10px 0;
-  }
+    .rate input[type="radio"] {
+      display: none;
+    }
 
-  .hamburger {
-    display: flex;
-  }
-}
+    .rate label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.hamburger.active div:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
+    .rate label div {
+      width: 30px;
+      height: 30px;
+      border: 2px solid #ccc;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      transition: background 0.3s, border 0.3s;
+    }
 
-.hamburger.active div:nth-child(2) {
-  opacity: 0;
-}
+    .rate input[type="radio"]:checked+label div {
+      background: #808080;
+      border: 2px solid #808080;
+    }
 
-.hamburger.active div:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
+    .form .btn{
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      border: none;
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      background-color: #0F75BD;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-nav ul.active {
-  display: flex;
-}
-th, td {
-    font-size: 14px; /* Adjust the size as needed */
-  }
+    .form .btn:hover {
+      background-color: #fff;
+      color: #0F75BD;
+      border: 2px solid #0F75BD;
+    }
+
+    .red-text {
+      color: red;
+    }
+
+    .verticalrate {
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+      gap: 10px;
+      padding: 10px 25px;
+    }
+
+    .verticalrate input[type="radio"] {
+      display: none;
+    }
+
+    .verticalrate label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .verticalrate label div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ccc;
+      border-radius: 13px;
+      transition: background 0.3s, border 0.3s;
+    }
+
+    .verticalrate label p {
+      font-size: 16px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .verticalrate input[type="radio"]:checked+label div {
+      background: #808080;
+      border: 2px solid #808080;
+    }
+
+    .reason {
+      padding-left: 25px;
+      padding-top: 10px;
+    }
+
+    nav {
+      padding: 40px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo a {
+      font-size: 28px;
+      text-decoration: none;
+      font-family: cookie;
+      font-weight: bold;
+      color: #433e58;
+      padding-left: 20px;
+    }
+
+    .logo img {
+      max-height: 58px;
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #433e58;
+      transition: 0.5s;
+      padding-right: 20px;
+    }
+
+    nav ul li a:hover {
+      color: #92278F;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #433e58;
+      margin: 4px;
+      transition: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px 20px 20px 20px;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: white;
+        text-align: center;
+      }
+      nav ul li {
+        margin: 10px 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    nav ul.active {
+      display: flex;
+    }
+
+    th, td {
+      font-size: 14px; 
+    }
 </style>
 </head>
 
@@ -590,10 +580,6 @@ th, td {
         <th>State the reason if No or Don't know</th>
         <th>How open to changes are we as an organization?</th>
         <th>Any other suggestion for Company improvements?</th>
-
-
-
-        <!-- Add more headers as needed -->
       </tr>
     </thead>
     <tbody>
@@ -633,32 +619,30 @@ th, td {
         <td><?php echo htmlspecialchars($response['q11_management_invest']); ?></td>
         <td><?php echo htmlspecialchars($response['q12_recfriend']); ?></td>
         <td>
-                        <?php 
-                        if (!empty($response['q12_recfriend_reasonNo'])) {
-                            echo htmlspecialchars($response['q12_recfriend_reasonNo']);
-                        } elseif (!empty($response['q12_recfriend_reasonDK'])) {
-                            echo htmlspecialchars($response['q12_recfriend_reasonDK']);
-                        } else {
-                            echo ''; // No reason provided
-                        }
-                        ?>
+          <?php 
+          if (!empty($response['q12_recfriend_reasonNo'])) {
+              echo htmlspecialchars($response['q12_recfriend_reasonNo']);
+          } elseif (!empty($response['q12_recfriend_reasonDK'])) {
+              echo htmlspecialchars($response['q12_recfriend_reasonDK']);
+          } else {
+              echo ''; // No reason provided
+          }
+          ?>
         </td>
         <td><?php echo htmlspecialchars($response['q13_jobsecurity']); ?></td>
         <td>
-                        <?php 
-                        if (!empty($response['q13_jobsecurity_reasonNo'])) {
-                            echo htmlspecialchars($response['q13_jobsecurity_reasonNo']);
-                        } elseif (!empty($response['q13_jobsecurity_reasonDK'])) {
-                            echo htmlspecialchars($response['q13_jobsecurity_reasonDK']);
-                        } else {
-                            echo ''; // No reason provided
-                        }
-                        ?>
+          <?php 
+          if (!empty($response['q13_jobsecurity_reasonNo'])) {
+              echo htmlspecialchars($response['q13_jobsecurity_reasonNo']);
+          } elseif (!empty($response['q13_jobsecurity_reasonDK'])) {
+              echo htmlspecialchars($response['q13_jobsecurity_reasonDK']);
+          } else {
+              echo ''; // No reason provided
+          }
+          ?>
         </td>
         <td><?php echo htmlspecialchars($response['q14_changes_openness']); ?></td>
         <td><?php echo htmlspecialchars($response['q15_suggestions']); ?></td>
-
-        <!-- Add more columns as needed -->
       </tr>
       <?php endforeach; ?>
     </tbody>
@@ -676,11 +660,11 @@ function toggleMenu() {
 }
 
 document.getElementById('exportButton').addEventListener('click', function() {
-      var wb = XLSX.utils.book_new();
-      var ws = XLSX.utils.table_to_sheet(document.querySelector('.table-responsive table'));
-      XLSX.utils.book_append_sheet(wb, ws, 'Survey Responses');
-      XLSX.writeFile(wb, 'survey_responses.xlsx');
-  });
+  var wb = XLSX.utils.book_new();
+  var ws = XLSX.utils.table_to_sheet(document.querySelector('.table-responsive table'));
+  XLSX.utils.book_append_sheet(wb, ws, 'Survey Responses');
+  XLSX.writeFile(wb, 'survey_responses.xlsx');
+});
 </script>
 </body>
 

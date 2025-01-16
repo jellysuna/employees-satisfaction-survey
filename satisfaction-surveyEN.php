@@ -20,10 +20,6 @@ include("surveyresponse-serv.php");
         box-sizing: border-box;
         font-family: 'Lato', sans-serif;
     }
-    /* Hide the 000webhost branding */
-a[href*="000webhost.com"] {
-    display: none;
-}
     body {
         font-family: 'Lato', sans-serif;
         background-color: white;
@@ -124,18 +120,17 @@ a[href*="000webhost.com"] {
         }
         .rate label {
             font-size:14px;
-        flex: 1 0 5%; /* Adjusts width of each radio button label to 45% */
-    }
-    .question p {
+            flex: 1 0 5%; /* Adjusts width of each radio button label to 45% */
+        }
+        .question p {
             font-size: 16px;
         }
         .question h1 {
             font-size: 22px;
         }
-    .question .radiobtn {
-        font-size: 16px;
-    }
-
+        .question .radiobtn {
+            font-size: 16px;
+        }
     }
     @media (max-width: 380px) {
         .headercontainer p {
@@ -163,8 +158,8 @@ a[href*="000webhost.com"] {
           gap:2px;
         }
         .rate label {
-        flex: 1 0 5%; /* Adjusts width of each radio button label to 45% */
-    }
+            flex: 1 0 5%; /* Adjusts width of each radio button label to 45% */
+        }
     }
     .space {
         margin-top: 50px;
@@ -223,8 +218,8 @@ a[href*="000webhost.com"] {
         border: 2px solid #0F75BD;
     }
     .red-text {
-            color: red;
-        }
+        color: red;
+    }
 
     .verticalrate {
        display: flex;
@@ -237,22 +232,22 @@ a[href*="000webhost.com"] {
         display: none;
     }
     .verticalrate label {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Adjust the gap between radio button and label text */
-}
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Adjust the gap between radio button and label text */
+    }
 
-.verticalrate label div {
-    display: flex;
-    flex-direction: column; /* Set the direction to column to stack text vertically */
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 13px;
-    transition: background 0.3s, border 0.3s;
-}
+    .verticalrate label div {
+        display: flex;
+        flex-direction: column; /* Set the direction to column to stack text vertically */
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        border-radius: 13px;
+        transition: background 0.3s, border 0.3s;
+    }
     .verticalrate label p{
       font-size: 16px;
       display: inline-block;
@@ -263,9 +258,9 @@ a[href*="000webhost.com"] {
         border: 2px solid #808080;
     }
     .reason {
-    padding-left: 25px;
-    padding-top: 10px;
-}
+        padding-left: 25px;
+        padding-top: 10px;
+    }
 
   </style>
 </head>
@@ -1087,61 +1082,60 @@ a[href*="000webhost.com"] {
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-    const recFriendRadios = document.getElementsByName('q12_recfriend');
-    recFriendRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            document.getElementById('q12_reasonNo').style.display = 'none';
-            document.getElementById('q12_reasonDK').style.display = 'none';
-            // Clear the reason text fields when the radio button options are changed
-            document.getElementById('q12_reasonNoInput').value = '';
-            document.getElementById('q12_reasonDKInput').value = '';
-            if (this.value == 2) {
-                document.getElementById('q12_reasonNo').style.display = 'block';
-            } else if (this.value == 3) {
-                document.getElementById('q12_reasonDK').style.display = 'block';
-            }
-        });
-    });
+            const recFriendRadios = document.getElementsByName('q12_recfriend');
+            recFriendRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.getElementById('q12_reasonNo').style.display = 'none';
+                    document.getElementById('q12_reasonDK').style.display = 'none';
+                    // Clear the reason text fields when the radio button options are changed
+                    document.getElementById('q12_reasonNoInput').value = '';
+                    document.getElementById('q12_reasonDKInput').value = '';
+                    if (this.value == 2) {
+                        document.getElementById('q12_reasonNo').style.display = 'block';
+                    } else if (this.value == 3) {
+                        document.getElementById('q12_reasonDK').style.display = 'block';
+                    }
+                });
+            });
 
-    const jobSecurityRadios = document.getElementsByName('q13_jobsecurity');
-    jobSecurityRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            document.getElementById('q13_reasonNo').style.display = 'none';
-            document.getElementById('q13_reasonDK').style.display = 'none';
-            // Clear the reason text fields when the radio button options are changed
-            document.getElementById('q13_reasonNoInput').value = '';
-            document.getElementById('q13_reasonDKInput').value = '';
-            if (this.value == 2) {
-                document.getElementById('q13_reasonNo').style.display = 'block';
-            } else if (this.value == 3) {
-                document.getElementById('q13_reasonDK').style.display = 'block';
-            }
-        });
-    });
+            const jobSecurityRadios = document.getElementsByName('q13_jobsecurity');
+            jobSecurityRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.getElementById('q13_reasonNo').style.display = 'none';
+                    document.getElementById('q13_reasonDK').style.display = 'none';
+                    // Clear the reason text fields when the radio button options are changed
+                    document.getElementById('q13_reasonNoInput').value = '';
+                    document.getElementById('q13_reasonDKInput').value = '';
+                    if (this.value == 2) {
+                        document.getElementById('q13_reasonNo').style.display = 'block';
+                    } else if (this.value == 3) {
+                        document.getElementById('q13_reasonDK').style.display = 'block';
+                    }
+                });
+            });
 
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(event) {
-        if (!validateForm()) {
-            event.preventDefault();
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+        function changeLanguage(select) {
+            // Get the selected language option value
+            var selectedLanguage = select.value;
+
+            // Define the URLs for different language versions of your page
+            var languageUrls = {
+                en: 'satisfaction-surveyEN.php',
+                bm: 'satisfaction-surveyBM.php',
+                cn: 'satisfaction-surveyCN.php'
+            };
+
+            // Redirect the user to the selected language version of the page
+            window.location.href = languageUrls[selectedLanguage];
         }
-    });
-});
-
-function changeLanguage(select) {
-    // Get the selected language option value
-    var selectedLanguage = select.value;
-
-    // Define the URLs for different language versions of your page
-    var languageUrls = {
-        en: 'satisfaction-surveyEN.php',
-        bm: 'satisfaction-surveyBM.php',
-        cn: 'satisfaction-surveyCN.php'
-    };
-
-    // Redirect the user to the selected language version of the page
-    window.location.href = languageUrls[selectedLanguage];
-}
-
     </script>
 
 </body>

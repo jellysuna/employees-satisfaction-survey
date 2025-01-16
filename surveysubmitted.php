@@ -15,10 +15,6 @@
         box-sizing: border-box;
         font-family: 'Lato', sans-serif;
     }
-    /* Hide the 000webhost branding */
-a[href*="000webhost.com"] {
-    display: none;
-}
     body {
         font-family: 'Lato', sans-serif;
         background-color: white;
