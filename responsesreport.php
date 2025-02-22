@@ -2,21 +2,23 @@
 // Include the database configuration file
 include('config.php');
 
-function getTotalResponses($conn) {
-    try {
-        $stmt = $conn->prepare("SELECT COUNT(*) AS total_responses FROM surveyresponse");
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total_responses'];
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    return 0;
+function getTotalResponses($conn)
+{
+  try {
+    $stmt = $conn->prepare("SELECT COUNT(*) AS total_responses FROM surveyresponse");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['total_responses'];
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+  return 0;
 }
 
-function getSurveyResponses($conn) {
-    try {
-        $stmt = $conn->prepare("
+function getSurveyResponses($conn)
+{
+  try {
+    $stmt = $conn->prepare("
             SELECT 
                 r.respondent_name, r.respondent_department, r.respondent_designation, 
                 sr.*, s.survey_date
@@ -29,12 +31,12 @@ function getSurveyResponses($conn) {
             ORDER BY 
                 s.survey_date DESC  -- Change to ASC for oldest first
         ");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-    return [];
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+  }
+  return [];
 }
 
 
@@ -47,8 +49,9 @@ $responses = getSurveyResponses($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>Survey Responses</title>
+  <title>Survey Responses</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,7 +142,9 @@ $responses = getSurveyResponses($conn);
       border: 0.08px #808080;
     }
 
-    .form table, .form th, .form td {
+    .form table,
+    .form th,
+    .form td {
       border: 1px solid #ccc;
       padding: 10px;
     }
@@ -195,11 +200,12 @@ $responses = getSurveyResponses($conn);
         padding-left: 40px;
 
       }
+
       .headercontainer #totalresponse {
-      font-size: 14px;
-      font-weight: 300;
-      padding-bottom: 70px;
-      padding-left: 40px;
+        font-size: 14px;
+        font-weight: 300;
+        padding-bottom: 70px;
+        padding-left: 40px;
       }
 
       .detailscontainer {
@@ -217,8 +223,9 @@ $responses = getSurveyResponses($conn);
         margin: auto;
         width: 94%;
       }
+
       .form table {
-        padding: auto; /* Adjust padding for smaller screens */
+        padding: auto;
       }
 
       .form input {
@@ -234,7 +241,7 @@ $responses = getSurveyResponses($conn);
       .rate label {
         flex: 1 0 5%;
       }
-      
+
       .logo img {
         max-height: 18px;
       }
@@ -277,7 +284,7 @@ $responses = getSurveyResponses($conn);
       .rate label {
         flex: 1 0 5%;
       }
-      
+
       .logo img {
         max-height: 28px;
       }
@@ -325,7 +332,7 @@ $responses = getSurveyResponses($conn);
       border: 2px solid #808080;
     }
 
-    .form .btn{
+    .form .btn {
       display: flex;
       height: 40px;
       justify-content: center;
@@ -459,6 +466,7 @@ $responses = getSurveyResponses($conn);
       nav {
         padding: 20px 20px 20px 20px;
       }
+
       nav ul {
         display: none;
         flex-direction: column;
@@ -469,9 +477,11 @@ $responses = getSurveyResponses($conn);
         background-color: white;
         text-align: center;
       }
+
       nav ul li {
         margin: 10px 0;
       }
+
       .hamburger {
         display: flex;
       }
@@ -493,181 +503,182 @@ $responses = getSurveyResponses($conn);
       display: flex;
     }
 
-    th, td {
-      font-size: 14px; 
+    th,
+    td {
+      font-size: 14px;
     }
-</style>
+  </style>
 </head>
 
 <body>
-<div class="navbarcontainer">
-<nav>
-  <div class="logo">
-    <a href="#">
-     </a>
+  <div class="navbarcontainer">
+    <nav>
+      <div class="logo">
+        <a href="#">
+        </a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul>
+        <li><a href="satisfaction-surveyEN.php">Go to survey</a></li>
+        <li><a href="responsesreport.php">Survey Responses</a></li>
+        <li><a href="index.php">Analysis Report</a></li>
+      </ul>
+      <div class="buttons">
+        <a href="adminlogin.php" class="btn">Log in as Admin</a>
+        <?php
+        if (isset($_POST['Log out'])) {
+          session_destroy();
+          unset($_SESSION['acc_id']);
+        }
+        ?>
+      </div>
+    </nav>
   </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+
+  <div class="headercontainer">
+    <br>
+    <h1>Employees Satisfaction Survey</h1>
+    <p>Survey Responses</p>
+    <p id="totalresponse">
+      <?php echo "$totalResponses responses"; ?>
+    </p>
   </div>
-  <ul>
-    <li><a href="satisfaction-surveyEN.php">Go to survey</a></li>
-    <li><a href="responsesreport.php">Survey Responses</a></li>
-    <li><a href="index.php">Analysis Report</a></li>
-  </ul>
-  <div class="buttons">
-    <a href="adminlogin.php" class="btn">Log in as Admin</a>
-    <?php
-    if (isset($_POST['Log out'])) {
-      session_destroy();
-      unset($_SESSION['acc_id']);
+
+  <div class="form">
+    <button id="exportButton" class="btn btn-primary">Export to Excel</button>
+    <br><br>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Date Submitted</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Overall, how satisfied are you working for the Company?</th>
+            <th>To what extend do you agree: I would recommend this company as a good place to work</th>
+            <th>What I like the best about working for the Company is</th>
+            <th>Things that the Company should do to make it a better workplace are</th>
+            <th>Do you enjoy our company’s culture?</th>
+            <th>Overall, how satisfied are you working in your department?</th>
+            <th>Which of the above factors most strongly affects your satisfaction with your work? Why?</th>
+            <th>How many years have you been with the Company?</th>
+            <th>What else about your superior affects your job satisfaction?</th>
+            <th>Satisfaction: Your basic salary</th>
+            <th>Satisfaction: Benefitt entitlement</th>
+            <th>Satisfaction: Your career progression at the Company thus far</th>
+            <th>Satisfaction: Your medical insurance</th>
+            <th>Satisfaction: The process used to determine the annual raise</th>
+            <th>Satisfaction: The process used to determine employee's promotion</th>
+            <th>Extent to which you agree: Overall, my superior does a good job</th>
+            <th>Extent to which you agree: My superior actively listens to my suggestions</th>
+            <th>Extent to which you agree: How transparent do you feel the management is?</th>
+            <th>Extent to which you agree: My superior enables me to perform at my best</th>
+            <th>Extent to which you agree: It is clear to me what my superior expects of me regarding my job performance
+            </th>
+            <th>Extent to which you agree: My superior provides me with actionable suggestions on what I can do to
+              improve</th>
+            <th>Extent to which you agree: When I have questions or concerns, my superior is able to address them</th>
+            <th>Extent to which you agree: My superior evaluates my work performance on a regular basis</th>
+            <th>Extent to which you agree: Do you feel as though your job responsibilities are clearly defined?</th>
+            <th>Extent to which you agree: Does management seem invested in the success of the team?</th>
+            <th>Will you recommend this Company to your friend to work with us?</th>
+            <th>State the reason if No or Don't know</th>
+            <th>Does the Company provide you job security?</th>
+            <th>State the reason if No or Don't know</th>
+            <th>How open to changes are we as an organization?</th>
+            <th>Any other suggestion for Company improvements?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $counter = 1; // Initialize counter
+          foreach ($responses as $response): ?>
+            <tr>
+              <td><?php echo $counter++; ?></td>
+              <td><?php echo htmlspecialchars($response['survey_date']); ?></td>
+              <td><?php echo htmlspecialchars($response['respondent_name']); ?></td>
+              <td><?php echo htmlspecialchars($response['respondent_department']); ?></td>
+              <td><?php echo htmlspecialchars($response['respondent_designation']); ?></td>
+              <td><?php echo htmlspecialchars($response['q1_company_satisfaction']); ?></td>
+              <td><?php echo htmlspecialchars($response['q2_rec_company']); ?></td>
+              <td><?php echo htmlspecialchars($response['q3_likes']); ?></td>
+              <td><?php echo htmlspecialchars($response['q4_improvement']); ?></td>
+              <td><?php echo htmlspecialchars($response['q5_company_culture']); ?></td>
+              <td><?php echo htmlspecialchars($response['q6_department_satisfaction']); ?></td>
+              <td><?php echo htmlspecialchars($response['q7_satisfaction_factors']); ?></td>
+              <td><?php echo htmlspecialchars($response['q8_years_working']); ?></td>
+              <td><?php echo htmlspecialchars($response['q9_superior_impact']); ?></td>
+              <td><?php echo htmlspecialchars($response['q10_basicsalary']); ?></td>
+              <td><?php echo htmlspecialchars($response['q10_benefit']); ?></td>
+              <td><?php echo htmlspecialchars($response['q10_career_progression']); ?></td>
+              <td><?php echo htmlspecialchars($response['q10_med_insurance']); ?></td>
+              <td><?php echo htmlspecialchars($response['q10_annual_raise']); ?></td>
+              <td><?php echo htmlspecialchars($response['q10_promotion_process']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_superior_job']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_superior_listens']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_management']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_superior_enable']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_superior_expectation']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_superior_suggestion']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_address_concern']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_evaluate_works']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_jobscope']); ?></td>
+              <td><?php echo htmlspecialchars($response['q11_management_invest']); ?></td>
+              <td><?php echo htmlspecialchars($response['q12_recfriend']); ?></td>
+              <td>
+                <?php
+                if (!empty($response['q12_recfriend_reasonNo'])) {
+                  echo htmlspecialchars($response['q12_recfriend_reasonNo']);
+                } elseif (!empty($response['q12_recfriend_reasonDK'])) {
+                  echo htmlspecialchars($response['q12_recfriend_reasonDK']);
+                } else {
+                  echo ''; // No reason provided
+                }
+                ?>
+              </td>
+              <td><?php echo htmlspecialchars($response['q13_jobsecurity']); ?></td>
+              <td>
+                <?php
+                if (!empty($response['q13_jobsecurity_reasonNo'])) {
+                  echo htmlspecialchars($response['q13_jobsecurity_reasonNo']);
+                } elseif (!empty($response['q13_jobsecurity_reasonDK'])) {
+                  echo htmlspecialchars($response['q13_jobsecurity_reasonDK']);
+                } else {
+                  echo ''; // No reason provided
+                }
+                ?>
+              </td>
+              <td><?php echo htmlspecialchars($response['q14_changes_openness']); ?></td>
+              <td><?php echo htmlspecialchars($response['q15_suggestions']); ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="space"></div>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav ul');
+      const hamburger = document.querySelector('.hamburger');
+      nav.classList.toggle('active');
+      hamburger.classList.toggle('active');
     }
-    ?>
-  </div>
-</nav>
-</div>
 
-<div class="headercontainer">
-<br>
-<h1>Employees Satisfaction Survey</h1>
-<p>Survey Responses</p>
-<p id="totalresponse">
-  <?php echo "$totalResponses responses"; ?>
-</p>
-</div>
-
-<div class="form">
-<button id="exportButton" class="btn btn-primary">Export to Excel</button>
-<br><br>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>No.</th>
-        <th>Date Submitted</th>
-        <th>Name</th>
-        <th>Department</th>
-        <th>Designation</th>
-        <th>Overall, how satisfied are you working for the Company?</th>
-        <th>To what extend do you agree: I would recommend this company as a good place to work</th>
-        <th>What I like the best about working for the Company is</th>
-        <th>Things that the Company should do to make it a better workplace are</th>
-        <th>Do you enjoy our company’s culture?</th>
-        <th>Overall, how satisfied are you working in your department?</th>
-        <th>Which of the above factors most strongly affects your satisfaction with your work? Why?</th>
-        <th>How many years have you been with the Company?</th>
-        <th>What else about your superior affects your job satisfaction?</th>
-        <th>Satisfaction: Your basic salary</th>
-        <th>Satisfaction: Benefitt entitlement</th>
-        <th>Satisfaction: Your career progression at the Company thus far</th>
-        <th>Satisfaction: Your medical insurance</th>
-        <th>Satisfaction: The process used to determine the annual raise</th>
-        <th>Satisfaction: The process used to determine employee's promotion</th>
-        <th>Extent to which you agree: Overall, my superior does a good job</th>
-        <th>Extent to which you agree: My superior actively listens to my suggestions</th>
-        <th>Extent to which you agree: How transparent do you feel the management is?</th>
-        <th>Extent to which you agree: My superior enables me to perform at my best</th>
-        <th>Extent to which you agree: It is clear to me what my superior expects of me regarding my job performance</th>
-        <th>Extent to which you agree: My superior provides me with actionable suggestions on what I can do to improve</th>
-        <th>Extent to which you agree: When I have questions or concerns, my superior is able to address them</th>
-        <th>Extent to which you agree: My superior evaluates my work performance on a regular basis</th>
-        <th>Extent to which you agree: Do you feel as though your job responsibilities are clearly defined?</th>
-        <th>Extent to which you agree: Does management seem invested in the success of the team?</th>
-        <th>Will you recommend this Company to your friend to work with us?</th>
-        <th>State the reason if No or Don't know</th>
-        <th>Does the Company provide you job security?</th>
-        <th>State the reason if No or Don't know</th>
-        <th>How open to changes are we as an organization?</th>
-        <th>Any other suggestion for Company improvements?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php 
-      $counter = 1; // Initialize counter
-      foreach ($responses as $response): ?>
-      <tr>
-        <td><?php echo $counter++; ?></td>
-        <td><?php echo htmlspecialchars($response['survey_date']); ?></td>
-        <td><?php echo htmlspecialchars($response['respondent_name']); ?></td>
-        <td><?php echo htmlspecialchars($response['respondent_department']); ?></td>
-        <td><?php echo htmlspecialchars($response['respondent_designation']); ?></td>
-        <td><?php echo htmlspecialchars($response['q1_company_satisfaction']); ?></td>
-        <td><?php echo htmlspecialchars($response['q2_rec_company']); ?></td>
-        <td><?php echo htmlspecialchars($response['q3_likes']); ?></td>
-        <td><?php echo htmlspecialchars($response['q4_improvement']); ?></td>
-        <td><?php echo htmlspecialchars($response['q5_company_culture']); ?></td>
-        <td><?php echo htmlspecialchars($response['q6_department_satisfaction']); ?></td>
-        <td><?php echo htmlspecialchars($response['q7_satisfaction_factors']); ?></td>
-        <td><?php echo htmlspecialchars($response['q8_years_working']); ?></td>
-        <td><?php echo htmlspecialchars($response['q9_superior_impact']); ?></td>
-        <td><?php echo htmlspecialchars($response['q10_basicsalary']); ?></td>
-        <td><?php echo htmlspecialchars($response['q10_benefit']); ?></td>
-        <td><?php echo htmlspecialchars($response['q10_career_progression']); ?></td>
-        <td><?php echo htmlspecialchars($response['q10_med_insurance']); ?></td>
-        <td><?php echo htmlspecialchars($response['q10_annual_raise']); ?></td>
-        <td><?php echo htmlspecialchars($response['q10_promotion_process']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_superior_job']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_superior_listens']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_management']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_superior_enable']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_superior_expectation']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_superior_suggestion']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_address_concern']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_evaluate_works']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_jobscope']); ?></td>
-        <td><?php echo htmlspecialchars($response['q11_management_invest']); ?></td>
-        <td><?php echo htmlspecialchars($response['q12_recfriend']); ?></td>
-        <td>
-          <?php 
-          if (!empty($response['q12_recfriend_reasonNo'])) {
-              echo htmlspecialchars($response['q12_recfriend_reasonNo']);
-          } elseif (!empty($response['q12_recfriend_reasonDK'])) {
-              echo htmlspecialchars($response['q12_recfriend_reasonDK']);
-          } else {
-              echo ''; // No reason provided
-          }
-          ?>
-        </td>
-        <td><?php echo htmlspecialchars($response['q13_jobsecurity']); ?></td>
-        <td>
-          <?php 
-          if (!empty($response['q13_jobsecurity_reasonNo'])) {
-              echo htmlspecialchars($response['q13_jobsecurity_reasonNo']);
-          } elseif (!empty($response['q13_jobsecurity_reasonDK'])) {
-              echo htmlspecialchars($response['q13_jobsecurity_reasonDK']);
-          } else {
-              echo ''; // No reason provided
-          }
-          ?>
-        </td>
-        <td><?php echo htmlspecialchars($response['q14_changes_openness']); ?></td>
-        <td><?php echo htmlspecialchars($response['q15_suggestions']); ?></td>
-      </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-</div>
-</div>
-<div class="space"></div>
-
-<script>
-function toggleMenu() {
-  const nav = document.querySelector('nav ul');
-  const hamburger = document.querySelector('.hamburger');
-  nav.classList.toggle('active');
-  hamburger.classList.toggle('active');
-}
-
-document.getElementById('exportButton').addEventListener('click', function() {
-  var wb = XLSX.utils.book_new();
-  var ws = XLSX.utils.table_to_sheet(document.querySelector('.table-responsive table'));
-  XLSX.utils.book_append_sheet(wb, ws, 'Survey Responses');
-  XLSX.writeFile(wb, 'survey_responses.xlsx');
-});
-</script>
+    document.getElementById('exportButton').addEventListener('click', function () {
+      var wb = XLSX.utils.book_new();
+      var ws = XLSX.utils.table_to_sheet(document.querySelector('.table-responsive table'));
+      XLSX.utils.book_append_sheet(wb, ws, 'Survey Responses');
+      XLSX.writeFile(wb, 'survey_responses.xlsx');
+    });
+  </script>
 </body>
 
 </html>
-
-
